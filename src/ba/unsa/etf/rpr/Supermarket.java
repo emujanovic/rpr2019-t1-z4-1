@@ -30,4 +30,15 @@ public class Supermarket {
         }
         return temp;
     }
+    public boolean provjeraKoda(String kod) {
+        Artikl[] spisakArtikala = artikli;
+        Boolean ima = false;
+
+        for (int i = 0; i < spisakArtikala.length; i++) {
+            if (spisakArtikala[i] != null) {
+                if (spisakArtikala[i].getKod().equals(kod)) ima = true;
+            }
+        }
+        return ima;
+    }
 }

@@ -30,11 +30,13 @@ public class Main {
         supermarket.dodajArtikl(new Artikl("Biciklo", 1000, "20"));
     }
 
+
     public static void ispisArtikala(Artikl[] artikli){
         for (Artikl a : artikli) {
             if(a != null) System.out.println("Naziv: " + a.getNaziv() + ", Kod: " + a.getKod() + ", Cijena: " + a.getCijena() + " KM");
         }
     }
+
 
     public static void main(String[] args) {
 //      Kreirati program koji modelira supermarket. Kupac ima korpu koja moze sadrzavati maksimalno 50 artikala.
@@ -48,7 +50,6 @@ public class Main {
 //      rjesavaju preko koda. Kupcu je potrebno omoguciti opciju da se prekine program, odnosno da odustane od kupovine,
 //      ili da ide na checkout gdje se obracunava potpuni iznos. Placanje se vrsi unosom pri cemu se validira da li je
 //      unesena negativna, odnosno dovoljna suma novca.
-
         unosArtikalaUMarket();
         for(;;){
             System.out.print("0 - odustani\n1 - dodaj u korpu\n2 - izbaci iz korpe\n3 - checkout\nUnesite opciju: ");
@@ -65,7 +66,15 @@ public class Main {
                 System.out.println("Unesite kod artikla (unesite malo slovo \"c\" za odustajanje): ");
                 String kod = scanner.nextLine();
                 kod = scanner.nextLine();
+                boolean ima =supermarket.provjeraKoda(kod) ;
                 if(!kod.equals("c")){
+                    if(!ima){
+                        for(;;){
+                            System.out.println("Unijeli ste kod koji ne postoji, unesite kod ponovo (unesite malo slovo \"c\" za odustajanje): ");
+                            kod = scanner.nextLine();
+                            if(kod.equals("c") || supermarket.provjeraKoda(kod)) break;
+                        }
+                    }
                     Artikl a = supermarket.izbaciArtiklSaKodom(kod);
                     if(a != null){
                         if(korpa.dodajArtikl(a)) System.out.println("Artikl dodan u korpu.");
