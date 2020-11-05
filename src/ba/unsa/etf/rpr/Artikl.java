@@ -23,4 +23,12 @@ public class Artikl {
     public int getCijena() {
         return this.cijena;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Artikl a =(Artikl) obj;
+        if(naziv.equals(((Artikl) obj).getNaziv()) && kod.equals(((Artikl) obj).getKod()) && cijena == ((Artikl) obj).getCijena())
+        return  true;
+        return false;
+    }
 }

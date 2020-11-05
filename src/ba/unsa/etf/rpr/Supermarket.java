@@ -30,6 +30,7 @@ public class Supermarket {
         }
         return temp;
     }
+
     public boolean provjeraKoda(String kod) {
         Artikl[] spisakArtikala = artikli;
         Boolean ima = false;
